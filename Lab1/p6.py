@@ -11,8 +11,8 @@ def check_palindrome(n):
 
 
 if __name__ == '__main__':
-    number = int(input("Enter number: "))
+    number = int(input("nr: "))
     if check_palindrome(number):
         print("palindrom")
     else:
-        print("nu e palindrome")
+        print("nu e palindrom")
