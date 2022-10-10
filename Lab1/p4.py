@@ -12,5 +12,5 @@ def transformString(s):
 
 
 if __name__ == '__main__':
-    string = input("Enter string: ")
+    string = input("stringul: ")
     print(transformString(string))
