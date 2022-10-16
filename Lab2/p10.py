@@ -1,10 +1,10 @@
 def mat(matrice):
-    caine=[[]*len(matrice) for i in range (len(matrice))]
+    moglind=[[]*len(matrice) for i in range (len(matrice))]
     for i in range(0,len(matrice)):
       for j in range(0,len(matrice[0])):
-        caine[i].append(matrice[j][i])
+        moglind[i].append(matrice[j][i])
     
-    print (caine)
+    print (moglind)
 
 
 
