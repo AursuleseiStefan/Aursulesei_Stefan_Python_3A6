@@ -7,5 +7,5 @@ def xml(tag,content,**param):
      return string
 
  
- 
-print(xml("a", "Hello there", href = " http://python.org ", _class = " my-link ", id = " someid "))
+if __name__=='__main__':
+ print(xml("a", "Hello there", href = " http://python.org ", _class = " my-link ", id = " someid "))
