@@ -1,7 +1,7 @@
 import os
 
 def funfis(dir,fis):
-    varptopen = open(fis,"a")#"a" pentru ca programul sa scrie la finalul sirului
+    varptopen = open(fis,"a")#"a"(de la append) pentru ca programul sa scrie la finalul sirului
     varnumefis = os.listdir(dir)#listeaza fisele din director(google)
     for i in varnumefis:
         if i.startswith("A"):
