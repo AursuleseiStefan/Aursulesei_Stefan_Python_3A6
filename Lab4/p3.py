@@ -18,7 +18,7 @@ def f(my_path):
         listaTuple=list(zip(dicti.keys(),dicti.values()))#zip atribuie ficarei key o val din dictionar
         listaTuple.sort(key=lambda i:i[1],reverse=True)#sorteaza tuplele in functie de aparitii//revrse-descrescator
         print(listaTuple)
-
+    f.close()
 
 if __name__=="__main__":
     f("C:/Users/aursu/Desktop")
