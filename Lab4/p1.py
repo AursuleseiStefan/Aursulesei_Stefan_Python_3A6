@@ -8,4 +8,5 @@ def f(dir_path):
             vect.append(os.path.splitext(file)[1]) #os.path.splittext desparte extensia de numele fisierului
     return sorted(set(vect))
 
-print(f("."))
+if __name__=="__main__":
+    print(f("."))
