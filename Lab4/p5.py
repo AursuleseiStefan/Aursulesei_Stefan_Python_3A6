@@ -14,7 +14,7 @@ def cautare(target,to_search):
         elif os.path.isdir(target):
             for root,dirs,files in os.walk(target): #parcurgere recursiva
                 for file in files:
-                    currentFile=os.path.join(root,file) #currentFile=root+os.sep+file
+                    currentFile=os.path.join(root,file) 
                     f = open(currentFile,"r")
                     if to_search in f.read():
                         listaFis.append(file)
