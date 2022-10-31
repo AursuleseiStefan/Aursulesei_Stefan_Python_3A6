@@ -2,7 +2,7 @@ import os
 
 def funfis(dir,fis):
     varptopen = open(fis,"a")#"a"(de la append) pentru ca programul sa scrie la finalul sirului
-    varnumefis = os.listdir(dir)#listeaza fisele din director(google)
+    varnumefis = os.listdir(dir)#listeaza fisele din director
     for i in varnumefis:
         if i.startswith("A"):
             varptopen.write(os.path.abspath(i)+"\n")#scrie in fisier path absoul al fisierului care incepe cu A
