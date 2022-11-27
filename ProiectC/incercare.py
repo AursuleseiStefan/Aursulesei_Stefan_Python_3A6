@@ -34,7 +34,9 @@ def functieptcrawl():
             #NUMELE PRODUSULUI
             for link in c.findAll('span',{'itemprop':'name'}):
                 numecomplet=numecomplet+" "+link.text
+            
             # b=bsup.find('span' ,{'data-akjl':'Price||Price||1'})
+            
             #OFERTELE NOASTRE...
             for link in a.findAll('span' ,{'data-akjl':'Price||Price||1'}):
                 vectcupretur.append(link.text)
