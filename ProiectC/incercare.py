@@ -34,7 +34,9 @@ def functieptcrawl():
             #NUMELE PRODUSULUI
             for link in c.findAll('span',{'itemprop':'name'}):
                 numecomplet=numecomplet+" "+link.text
+            
             # b=bsup.find('span' ,{'data-akjl':'Price||Price||1'})
+            
             #OFERTELE NOASTRE...
             for link in a.findAll('span' ,{'data-akjl':'Price||Price||1'}):
                 vectcupretur.append(link.text)
@@ -43,10 +45,11 @@ def functieptcrawl():
             for link in b.findAll('span' ,{'data-akjl':'Price||Price||1'}):
                 vectcupretur.append(link.text)
             
+            #CE E SUB BUTON
             for link in d.findAll('span' ,{'data-akjl':'Price||Price||1'}):
                 vectcupretur.append(link.text)
             
-            # #OFERTELE NOASTRE POT FI ACHIZITIONATE DE PE COMPARI.RO##se afla in OFERTELE NOASTRE
+            # #OFERTELE NOASTRE POT FI ACHIZITIONATE DE PE COMPARI.RO##se afla in OFERTELE NOASTRE deja
             # for link in d.findAll('span' ,{'data-akjl':'Price||Price||1'}):
             #     vectcupretur.append(link.text)
             #     print(link.text)
@@ -73,10 +76,10 @@ def functieptcrawl():
 
 
 def functiedepusinjson(listadedicti):
-    json_object = json.dumps(listadedicti, indent=4)
+    jsonobj = json.dumps(listadedicti, indent=4)
     
-    with open("sample.json", "w") as outfile:
-        outfile.write(json_object)
+    with open("sample.json", "w") as fisier:
+        fisier.write(jsonobj)
 
 if __name__=='__main__':
     #print(functiecuargumente())
