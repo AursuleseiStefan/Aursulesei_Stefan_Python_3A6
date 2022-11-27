@@ -1,20 +1,86 @@
 import requests as req
 from bs4 import BeautifulSoup
-
-vectcupretur=[]
-url="https://www.compari.ro/telefoane-mobile-c3277/samsung/galaxy-z-fold4-5g-256gb-12gb-ram-dual-f936-p841779084/"
-resp = req.get(url)
-bsup=BeautifulSoup(resp.text,"lxml")
-a=bsup.find('div' ,{'id':'offer-block-paying'})
-# b=bsup.find('span' ,{'data-akjl':'Price||Price||1'})
-for link in a.findAll('span' ,{'data-akjl':'Price||Price||1'}):
-      vectcupretur.append(link.text)
-sorted(vectcupretur)
-
-print (vectcupretur)
+import sys
+import json
 
 
+def functiecuargumente():
+    if len(sys.argv)<2:
+        return "prea putine argumente"
+    return True
 
+
+def functieptcrawl():
+    listadedictionare=[]
+    
+    if functiecuargumente():
+        vectordeargumente=[]
+        numecomplet=""
+        for i in range(1,len(sys.argv)):
+            vectordeargumente.append(sys.argv[i])
+        vectcupretur=[]
+        for url in vectordeargumente:
+            vectcupretur=[]
+            dictionarcutoate={}
+        #print (vectordeargumente)
+        #url="https://www.compari.ro/telefoane-mobile-c3277/samsung/galaxy-z-fold4-5g-256gb-12gb-ram-dual-f936-p841779084/"
+            resp = req.get(url)
+            bsup=BeautifulSoup(resp.text,"lxml")
+            a=bsup.find('div' ,{'id':'offer-block-paying'})
+            b=bsup.find('div' ,{'id':'offer-block-promoted'})
+            c=bsup.find('h1' ,{'class':'hidden-xs'})
+            #d=bsup.find('div' ,{'class':'row-price'})
+            d=bsup.find('div' ,{'id':'offer-block-free'})
+            #NUMELE PRODUSULUI
+            for link in c.findAll('span',{'itemprop':'name'}):
+                numecomplet=numecomplet+" "+link.text
+            # b=bsup.find('span' ,{'data-akjl':'Price||Price||1'})
+            #OFERTELE NOASTRE...
+            for link in a.findAll('span' ,{'data-akjl':'Price||Price||1'}):
+                vectcupretur.append(link.text)
+            
+            #OFERTE EVIDENTIATE
+            for link in b.findAll('span' ,{'data-akjl':'Price||Price||1'}):
+                vectcupretur.append(link.text)
+            
+            for link in d.findAll('span' ,{'data-akjl':'Price||Price||1'}):
+                vectcupretur.append(link.text)
+            
+            # #OFERTELE NOASTRE POT FI ACHIZITIONATE DE PE COMPARI.RO##se afla in OFERTELE NOASTRE
+            # for link in d.findAll('span' ,{'data-akjl':'Price||Price||1'}):
+            #     vectcupretur.append(link.text)
+            #     print(link.text)
+            
+            vectcupretur.sort()
+            #print(bsup.title.string)
+            #print(numecomplet)
+           
+            #print(len(vectcupretur))
+            dictionarcutoate["nume"]=numecomplet
+            dictionarcutoate["cel mai mic pret"]=vectcupretur[0]
+            dictionarcutoate["cel mai mare pret"]=vectcupretur[-1]
+            dictionarcutoate["oferte"]=len(vectcupretur)
+            numecomplet=""
+            listadedictionare.append(dictionarcutoate)
+            
+        #print(listadedictionare)
+            
+        functiedepusinjson(listadedictionare)
+            
+                 
+        #print (listadedictionare)
+        #print (vectordeargumente)
+
+
+def functiedepusinjson(listadedicti):
+    json_object = json.dumps(listadedicti, indent=4)
+    
+    with open("sample.json", "w") as outfile:
+        outfile.write(json_object)
+
+if __name__=='__main__':
+    #print(functiecuargumente())
+    functieptcrawl()
 
 # for link in bsup.find('div' ,{'id':'offer-block-paying'}):
 #     if 'href' in link.attrs:
